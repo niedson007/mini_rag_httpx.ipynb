@@ -243,3 +243,34 @@ comparação com os chunks disponíveis.
 
 Uma versão mais avançada poderia utilizar um banco de dados vetorial
 para armazenar e consultar os embeddings.
+## 8. Uso de inteligência artificial
+
+Ferramentas de inteligência artificial foram utilizadas como apoio
+durante o desenvolvimento deste projeto.
+
+O ChatGPT foi utilizado principalmente para:
+
+- auxiliar na compreensão dos conceitos de RAG;
+- orientar a organização das etapas do projeto;
+- auxiliar na elaboração e explicação do código;
+- ajudar na identificação e correção de erros;
+- auxiliar na organização da documentação do projeto.
+
+O Google Gemini foi utilizado como modelo generativo dentro do próprio
+RAG. Ele recebe os trechos recuperados da documentação do HTTPX como
+contexto e gera a resposta para a pergunta do usuário.
+
+As respostas e o funcionamento do código foram testados e validados
+durante a execução do projeto.
+## 9. Referências
+
+- Documentação oficial do HTTPX.
+- Documentação do Sentence Transformers.
+- Documentação do scikit-learn.
+- Documentação do Google Gemini API.
+## 10. Autor
+
+**Niedson Samuel Marcolino da Silva**
+
+Projeto desenvolvido como atividade prática de construção de um
+sistema simples de RAG.
