@@ -109,3 +109,60 @@ Depois de executar as células anteriores, utilize a função:
 
 ```python
 responder_rag("Como fazer uma requisição GET usando HTTPX?")
+## 5. Decisões técnicas
+
+### Divisão em chunks
+
+A documentação do HTTPX foi dividida em pequenos trechos de texto
+(chunks) para facilitar a recuperação das informações mais relevantes.
+
+Ao final do processamento, foram gerados 277 chunks.
+
+Cada chunk possui os seguintes metadados:
+
+- texto
+- arquivo
+- chunk_id
+- título
+
+### Embeddings
+
+Foi utilizado o modelo:
+
+`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
+
+Os embeddings transformam os textos em representações numéricas
+(vetores). Isso permite comparar semanticamente a pergunta do usuário
+com os conteúdos da documentação.
+
+### Busca semântica
+
+A busca utiliza similaridade de cosseno (cosine similarity) para
+comparar o embedding da pergunta com os embeddings dos chunks.
+
+O sistema recupera os 3 chunks com maior similaridade (`top_k=3`).
+
+### Modelo generativo
+
+Após recuperar os trechos mais relevantes, eles são enviados ao
+Gemini como contexto.
+
+O modelo foi instruído a responder utilizando apenas as informações
+presentes na documentação recuperada.
+
+Quando não há informação suficiente na documentação, o sistema é
+instruído a informar que não encontrou informação suficiente.
+
+### Fontes e scores
+
+Além da resposta gerada, o sistema apresenta as fontes utilizadas,
+mostrando:
+
+- ranking do resultado;
+- score de similaridade;
+- arquivo de origem;
+- título;
+- identificador do chunk.
+
+Isso permite verificar quais documentos foram recuperados para gerar
+a resposta.
