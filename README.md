@@ -36,3 +36,32 @@ Busca semântica
 Google Gemini
 ↓
 Resposta + fontes
+
+## 3. Tecnologias utilizadas
+
+- Python
+- Google Colab
+- Sentence Transformers
+- scikit-learn
+- Google Gemini API
+- GitHub
+- Documentação oficial do HTTPX
+
+### Modelo de embeddings
+
+Foi utilizado o modelo:
+
+`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
+
+Esse modelo foi utilizado para transformar os textos dos chunks
+e as perguntas do usuário em vetores, permitindo realizar a busca
+por similaridade semântica.
+
+### Modelo generativo
+
+Foi utilizado o modelo:
+
+`gemini-2.5-flash`
+
+O Gemini recebe os trechos recuperados pelo mecanismo de busca
+e gera a resposta final utilizando esses trechos como contexto.
