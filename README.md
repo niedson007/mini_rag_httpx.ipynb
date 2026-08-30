@@ -166,3 +166,25 @@ mostrando:
 
 Isso permite verificar quais documentos foram recuperados para gerar
 a resposta.
+
+## 6. Perguntas de teste
+
+Foram realizadas três perguntas para verificar o funcionamento do RAG.
+
+### Teste 1 — Requisição GET
+
+**Pergunta:**
+
+> Como fazer uma requisição GET usando HTTPX?
+
+**Resultado:**
+
+O sistema recuperou trechos da documentação e o Gemini respondeu
+explicando que é possível utilizar a função `httpx.get()`.
+
+**Exemplo apresentado pelo sistema:**
+
+```python
+import httpx
+
+r = httpx.get('https://httpbin.org/get')
