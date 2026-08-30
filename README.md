@@ -188,3 +188,58 @@ explicando que é possível utilizar a função `httpx.get()`.
 import httpx
 
 r = httpx.get('https://httpbin.org/get')
+
+## 7. Limitações
+
+Apesar de o sistema funcionar corretamente nos testes realizados,
+existem algumas limitações.
+
+### Recuperação dos chunks
+
+A busca utiliza similaridade de cosseno entre os embeddings e recupera
+os 3 chunks com maior pontuação.
+
+Em algumas perguntas, um trecho semanticamente semelhante pode aparecer
+antes de um trecho que possui a informação mais diretamente relacionada
+à pergunta.
+
+Isso foi observado no teste sobre requisições GET, no qual
+`docs/advanced/proxies.md` apareceu como primeiro resultado, enquanto
+`docs/quickstart.md` continha um exemplo diretamente relacionado a
+`httpx.get()`.
+
+### Dependência da qualidade dos embeddings
+
+A qualidade da recuperação depende do modelo de embeddings utilizado.
+Se a pergunta e o conteúdo estiverem semanticamente distantes, o sistema
+pode recuperar trechos pouco relevantes.
+
+### Títulos dos documentos
+
+Nem todos os chunks possuem um título identificado automaticamente.
+Por isso, alguns resultados podem aparecer com o título "Sem título".
+
+### Quantidade de resultados
+
+O sistema utiliza `top_k=3`, recuperando somente os três resultados com
+maior similaridade.
+
+Isso torna o sistema simples e rápido, mas pode fazer com que informações
+relevantes presentes em outros chunks não sejam utilizadas pelo modelo.
+
+### Base de conhecimento
+
+O Gemini é orientado a responder utilizando somente a documentação
+recuperada.
+
+Portanto, se a informação solicitada não estiver presente na
+documentação, o sistema pode informar que não encontrou informação
+suficiente, como ocorreu no teste sobre a Copa do Mundo de 2022.
+
+### Ausência de banco vetorial
+
+Esta versão utiliza os embeddings diretamente em memória e realiza a
+comparação com os chunks disponíveis.
+
+Uma versão mais avançada poderia utilizar um banco de dados vetorial
+para armazenar e consultar os embeddings.
