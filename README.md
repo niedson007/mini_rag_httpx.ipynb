@@ -65,3 +65,47 @@ Foi utilizado o modelo:
 
 O Gemini recebe os trechos recuperados pelo mecanismo de busca
 e gera a resposta final utilizando esses trechos como contexto.
+
+## 4. Como executar
+
+### 1. Abrir o notebook
+
+O arquivo principal do projeto é:
+
+`mini_rag_httpx.ipynb`
+
+O notebook pode ser aberto utilizando o Google Colab.
+
+### 2. Executar as células
+
+Execute as células do notebook na ordem em que aparecem.
+
+O projeto realiza as seguintes etapas:
+
+1. Instalação das bibliotecas.
+2. Obtenção da documentação do HTTPX.
+3. Leitura dos documentos Markdown.
+4. Divisão dos documentos em chunks.
+5. Criação dos metadados.
+6. Geração dos embeddings.
+7. Busca semântica.
+8. Integração com o Google Gemini.
+9. Geração da resposta.
+10. Apresentação das fontes e scores.
+
+### 3. Configurar a API Key
+
+Para utilizar o Gemini, é necessário configurar uma chave da API do Google AI.
+
+No Google Colab, a chave deve ser armazenada nos Secrets com o nome:
+
+`GEMINI_API_KEY`
+
+A chave não deve ser publicada diretamente no código ou no repositório do GitHub.
+
+### 4. Executar uma pergunta
+
+Depois de executar as células anteriores, utilize a função:
+
+```python
+responder_rag("Como fazer uma requisição GET usando HTTPX?")
